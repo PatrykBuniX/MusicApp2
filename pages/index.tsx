@@ -4,33 +4,7 @@ import { SongsList } from "../components/SongsList/SongsList";
 import { FormEvent, useState } from "react";
 import { Song } from "../types";
 import { useSongsState } from "../hooks/useSongsState";
-
-const url = process.env.NEXT_PUBLIC_API_BASE_URL!;
-const xRapidapiKey = process.env.NEXT_PUBLIC_API_KEY!;
-const xRapidapiHost = process.env.NEXT_PUBLIC_API_HOST!;
-
-async function fetchSongs(query: string, index: number = 0) {
-  const endpoint = url + `/search?q=${query}&index=${index}`;
-  const res = await fetch(endpoint, {
-    method: "GET",
-    headers: {
-      "x-rapidapi-key": xRapidapiKey,
-      "x-rapidapi-host": xRapidapiHost,
-    },
-  });
-  if (!res.ok) {
-    const errorObj = await res.json();
-    throw new Error(errorObj.message);
-  }
-  const data = await res.json();
-  const { data: songs, error } = data;
-
-  //api response with 200 and Exception
-  if (error) {
-    throw new Error(error.message);
-  }
-  return songs;
-}
+import { fetchSongs } from "../utils/apiCalls";
 
 export default function Home() {
   const [search, setSearch] = useState("");
