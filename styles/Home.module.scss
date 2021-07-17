@@ -3,3 +3,11 @@
   display: flex;
   flex-direction: column;
 }
+
+.listWrapper {
+  height: 65%;
+  width: 100vw;
+  flex: 1 1 auto;
+  position: relative;
+  background: linear-gradient(to bottom, #18829c 0%, #0569ac 100%);
+}

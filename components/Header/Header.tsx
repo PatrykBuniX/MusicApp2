@@ -2,20 +2,15 @@ import styles from "./Header.module.scss";
 import Link from "next/link";
 import MusicIcon from "../../public/music-icon.svg";
 import SearchIcon from "../../public/search-icon.svg";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent } from "react";
 
-export const Header = () => {
-  const [search, setSearch] = useState("");
+type Props = {
+  search: string;
+  handleSearchInput: (e: FormEvent<HTMLInputElement>) => void;
+  handleSearchSubmit: (e: FormEvent<HTMLFormElement>) => void;
+};
 
-  const handleSearchInput = (e: FormEvent<HTMLInputElement>) => {
-    setSearch(e.currentTarget.value);
-  };
-
-  const handleSearchSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log(search);
-  };
-
+export const Header = ({ search, handleSearchInput, handleSearchSubmit }: Props) => {
   return (
     <header className={styles.header}>
       <Link href="/">
