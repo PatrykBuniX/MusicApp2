@@ -6,7 +6,7 @@ import { Song } from "../types";
 import { useSongsStatus } from "../hooks/useSongsStatus";
 import { fetchSongs } from "../utils/apiCalls";
 
-export default function Home() {
+const Home = () => {
   const [search, setSearch] = useState("");
   const [queryIndex, setQueryIndex] = useState(0);
   const [songs, setSongs] = useState<Song[] | null>(null);
@@ -65,4 +65,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default Home;

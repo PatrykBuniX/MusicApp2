@@ -34,14 +34,14 @@ type Transitions = {
 const useSongsStatus = () => {
   const [songsStatus, setSongsStatus] = useState<SongsStatus>(songsStatuses.idle);
 
-  function transition(currentStatus: SongsStatus, action: Action): SongsStatus {
+  const transition = (currentStatus: SongsStatus, action: Action): SongsStatus => {
     const nextStatus = transitions[currentStatus][action];
     return nextStatus || currentStatus;
-  }
+  };
 
-  function updateSongsStatus(action: Action) {
+  const updateSongsStatus = (action: Action) => {
     setSongsStatus((currentStatus) => transition(currentStatus, action));
-  }
+  };
 
   return [songsStatus, updateSongsStatus] as const;
 };

@@ -2,7 +2,7 @@ const url = process.env.NEXT_PUBLIC_API_BASE_URL!;
 const xRapidapiKey = process.env.NEXT_PUBLIC_API_KEY!;
 const xRapidapiHost = process.env.NEXT_PUBLIC_API_HOST!;
 
-async function fetchSongs(query: string, index: number = 0) {
+const fetchSongs = async (query: string, index: number = 0) => {
   const endpoint = url + `/search?q=${query}&index=${index}`;
   const res = await fetch(endpoint, {
     method: "GET",
@@ -23,6 +23,6 @@ async function fetchSongs(query: string, index: number = 0) {
     throw new Error(error.message);
   }
   return songs;
-}
+};
 
 export { fetchSongs };
