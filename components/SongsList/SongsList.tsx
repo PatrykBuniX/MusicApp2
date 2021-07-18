@@ -1,15 +1,18 @@
+import { usePlayer } from "../../hooks/usePlayer";
 import { Song, SongsStatus } from "../../types";
 import styles from "../SongsList/SongsList.module.scss";
 import { SongTile } from "../SongTile/SongTile";
+import { MouseEvent } from "react";
 
 type Props = {
   error: string | null;
   songs: Song[] | null;
   songsStatus: SongsStatus;
   loadMoreSongs: () => Promise<void>;
+  handleTileClick: (e: MouseEvent<HTMLButtonElement>) => void;
 };
 
-export const SongsList = ({ songsStatus, error, songs, loadMoreSongs }: Props) => {
+export const SongsList = ({ songsStatus, error, songs, loadMoreSongs, handleTileClick }: Props) => {
   if (songsStatus === "idle") {
     return <p className={styles.idleStateText}>Search for your favourite songs!</p>;
   }
@@ -34,6 +37,8 @@ export const SongsList = ({ songsStatus, error, songs, loadMoreSongs }: Props) =
                 title={song.title}
                 artistName={song.artist.name}
                 albumCoverSrc={song.album.cover}
+                songSrc={song.preview}
+                onClick={handleTileClick}
               />
             );
           })

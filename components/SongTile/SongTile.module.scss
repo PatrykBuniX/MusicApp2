@@ -6,12 +6,20 @@
   height: 10rem;
   background: hsla(0, 0%, 100%, 0.25);
   border-bottom: 4px solid black;
-  display: flex;
-  justify-content: space-between;
-  cursor: pointer;
   transition: transform 0.2s cubic-bezier(0.14, 1.35, 0.54, 1.95), background-color 0.2s ease-in-out;
   &:hover {
     transform: scale(1.05);
+  }
+
+  button {
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 100%;
+    height: 100%;
+    text-align: left;
   }
 }
 
