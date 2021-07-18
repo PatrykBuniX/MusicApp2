@@ -1,16 +1,12 @@
 import { RefObject, useEffect, useState } from "react";
 
 type PlayerState = {
-  prevSong: string | undefined;
   currentSong: string | undefined;
-  nextSong: string | undefined;
   isPlaying: boolean;
 };
 
 const initialPlayerState = {
-  prevSong: undefined,
   currentSong: undefined,
-  nextSong: undefined,
   isPlaying: false,
 };
 
