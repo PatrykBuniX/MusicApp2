@@ -1,6 +1,7 @@
 import { Song, SongsStatus } from "../../types";
 import Image from "next/image";
 import styles from "../SongsList/SongsList.module.scss";
+import { LoadingView } from "../LoadingView/LoadingView";
 
 type Props = {
   error: string | null;
@@ -13,14 +14,12 @@ export const SongsList = ({ songsStatus, error, songs, loadMoreSongs }: Props) =
   if (songsStatus === "idle") {
     return <p className={styles.idleStateText}>Search for your favourite songs!</p>;
   }
-  if (songsStatus === "loading") {
-    return <p>Loading...</p>;
-  }
   if (songsStatus === "error") {
     return <p>{error}</p>;
   }
 
-  //songState is loaded
+  songsStatus;
+  //songStatus is loaded
 
   return (
     <ul className={styles.songsList}>
@@ -45,11 +44,13 @@ export const SongsList = ({ songsStatus, error, songs, loadMoreSongs }: Props) =
             );
           })
         : null}
-      <li className={styles.song}>
-        <button className={styles.loadMoreButton} onClick={loadMoreSongs}>
-          load more
-        </button>
-      </li>
+      {songsStatus === "loaded" ? (
+        <li className={styles.song}>
+          <button className={styles.loadMoreButton} onClick={loadMoreSongs}>
+            load more
+          </button>
+        </li>
+      ) : null}
     </ul>
   );
 };

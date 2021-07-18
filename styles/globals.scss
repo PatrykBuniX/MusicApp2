@@ -7,8 +7,9 @@
 }
 
 :root {
-  --blue: #18829c;
-  --darkBlue: #0569ac;
+  --blue: rgb(24, 130, 156);
+  --darkBlue: rgb(5, 105, 172);
+  --transparentBlue: rgba(24, 130, 156, 0.75);
 }
 
 html {

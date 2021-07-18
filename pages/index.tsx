@@ -1,6 +1,7 @@
 import styles from "../styles/Home.module.scss";
 import { Header } from "../components/Header/Header";
 import { SongsList } from "../components/SongsList/SongsList";
+import { LoadingView } from "../components/LoadingView/LoadingView";
 import { FormEvent, useState } from "react";
 import { Song } from "../types";
 import { useSongsStatus } from "../hooks/useSongsStatus";
@@ -61,6 +62,7 @@ const Home = () => {
             error={error}
             loadMoreSongs={loadMoreSongs}
           />
+          {songsStatus === "loading" ? <LoadingView /> : null}
         </div>
       </div>
     </div>

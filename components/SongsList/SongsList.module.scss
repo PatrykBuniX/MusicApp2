@@ -9,6 +9,7 @@
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   list-style-type: none;
+  position: relative;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -54,10 +55,10 @@
 
 @keyframes bgPulse {
   from {
-    background-color: lightblue;
+    background-color: var(--blue);
   }
   to {
-    background-color: lightseagreen;
+    background-color: var(--darkBlue);
   }
 }
 .songImageWrapper {
