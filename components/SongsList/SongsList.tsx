@@ -14,7 +14,13 @@ export const SongsList = ({ songsStatus, error, songs, loadMoreSongs }: Props) =
     return <p className={styles.idleStateText}>Search for your favourite songs!</p>;
   }
   if (songsStatus === "error") {
-    return <p>{error}</p>;
+    return (
+      <p className={styles.errorStateText}>
+        {error}
+        <br />
+        Try again later
+      </p>
+    );
   }
 
   //songStatus is loaded / loading
