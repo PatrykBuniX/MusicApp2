@@ -11,7 +11,7 @@ type Props = {
 
 export const SongsList = ({ songsStatus, error, songs, loadMoreSongs }: Props) => {
   if (songsStatus === "idle") {
-    return <p>Search for your favourite song!</p>;
+    return <p className={styles.idleStateText}>Search for your favourite songs!</p>;
   }
   if (songsStatus === "loading") {
     return <p>Loading...</p>;
