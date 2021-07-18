@@ -1,18 +1,18 @@
 import styles from "./SongTile.module.scss";
 import Image from "next/image";
-import { MouseEvent } from "react";
 
 type Props = {
   title: string;
   artistName: string;
   albumCoverSrc: string;
   songSrc: string;
-  onClick: (e: MouseEvent<HTMLLIElement>) => void;
+  onClick: () => void;
+  active: boolean;
 };
 
-export const SongTile = ({ title, artistName, albumCoverSrc, onClick, songSrc }: Props) => {
+export const SongTile = ({ title, artistName, albumCoverSrc, onClick, active }: Props) => {
   return (
-    <li data-song-src={songSrc} onClick={onClick} className={styles.song}>
+    <li onClick={onClick} className={`${styles.song} ${active ? styles.active : ""}`}>
       <button>
         <div className={styles.songContent}>
           <p className={styles.songTitle}>{title}</p>

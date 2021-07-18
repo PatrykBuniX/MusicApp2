@@ -1,18 +1,24 @@
-import { usePlayer } from "../../hooks/usePlayer";
 import { Song, SongsStatus } from "../../types";
 import styles from "../SongsList/SongsList.module.scss";
 import { SongTile } from "../SongTile/SongTile";
-import { MouseEvent } from "react";
 
 type Props = {
   error: string | null;
   songs: Song[] | null;
   songsStatus: SongsStatus;
   loadMoreSongs: () => Promise<void>;
-  handleTileClick: (e: MouseEvent<HTMLLIElement>) => void;
+  handleTileClick: (clickedIndex: number) => void;
+  currentSongIndex: number;
 };
 
-export const SongsList = ({ songsStatus, error, songs, loadMoreSongs, handleTileClick }: Props) => {
+export const SongsList = ({
+  songsStatus,
+  error,
+  songs,
+  loadMoreSongs,
+  handleTileClick,
+  currentSongIndex,
+}: Props) => {
   if (songsStatus === "idle") {
     return <p className={styles.idleStateText}>Search for your favourite songs!</p>;
   }
@@ -38,7 +44,8 @@ export const SongsList = ({ songsStatus, error, songs, loadMoreSongs, handleTile
                 artistName={song.artist.name}
                 albumCoverSrc={song.album.cover}
                 songSrc={song.preview}
-                onClick={handleTileClick}
+                onClick={() => handleTileClick(index)}
+                active={index === currentSongIndex}
               />
             );
           })
