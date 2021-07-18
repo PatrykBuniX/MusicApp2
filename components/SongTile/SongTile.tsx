@@ -19,13 +19,17 @@ export const SongTile = ({ title, artistName, albumCoverSrc, onClick, songSrc }:
           <p className={styles.songArtist}>{artistName}</p>
         </div>
         <div className={styles.songImageWrapper}>
-          <Image
-            className={styles.songImage}
-            src={albumCoverSrc}
-            alt=""
-            layout="fill"
-            objectFit="fill"
-          />
+          {albumCoverSrc ? (
+            <Image
+              className={styles.songImage}
+              src={albumCoverSrc}
+              alt=""
+              layout="fill"
+              objectFit="fill"
+            />
+          ) : (
+            <p className={styles.noCoverImg}>No cover img</p>
+          )}
         </div>
       </button>
     </li>
