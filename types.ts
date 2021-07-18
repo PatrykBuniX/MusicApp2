@@ -43,4 +43,4 @@ export interface Song {
   type: string;
 }
 
-export type SongsState = "empty" | "loading" | "loaded" | "error";
+export type SongsStatus = "idle" | "loading" | "loaded" | "error";

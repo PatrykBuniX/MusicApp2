@@ -1,22 +1,22 @@
-import { Song, SongsState } from "../../types";
+import { Song, SongsStatus } from "../../types";
 import Image from "next/image";
 import styles from "../SongsList/SongsList.module.scss";
 
 type Props = {
   error: string | null;
   songs: Song[] | null;
-  songsState: SongsState;
+  songsStatus: SongsStatus;
   loadMoreSongs: () => Promise<void>;
 };
 
-export const SongsList = ({ songsState, error, songs, loadMoreSongs }: Props) => {
-  if (songsState === "empty") {
+export const SongsList = ({ songsStatus, error, songs, loadMoreSongs }: Props) => {
+  if (songsStatus === "idle") {
     return <p>Search for your favourite song!</p>;
   }
-  if (songsState === "loading") {
+  if (songsStatus === "loading") {
     return <p>Loading...</p>;
   }
-  if (songsState === "error") {
+  if (songsStatus === "error") {
     return <p>{error}</p>;
   }
 
