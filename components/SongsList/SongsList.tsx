@@ -9,7 +9,7 @@ type Props = {
   songs: Song[] | null;
   songsStatus: SongsStatus;
   loadMoreSongs: () => Promise<void>;
-  handleTileClick: (e: MouseEvent<HTMLButtonElement>) => void;
+  handleTileClick: (e: MouseEvent<HTMLLIElement>) => void;
 };
 
 export const SongsList = ({ songsStatus, error, songs, loadMoreSongs, handleTileClick }: Props) => {

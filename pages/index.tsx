@@ -22,7 +22,7 @@ const Home = () => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playerState, setPlayerState] = usePlayer(audioRef);
 
-  const handleTileClick = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleTileClick = (e: MouseEvent<HTMLLIElement>) => {
     const { songSrc } = e.currentTarget.dataset;
     if (!songSrc) return;
     setPlayerState((prevState) => {

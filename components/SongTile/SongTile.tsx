@@ -7,13 +7,13 @@ type Props = {
   artistName: string;
   albumCoverSrc: string;
   songSrc: string;
-  onClick: (e: MouseEvent<HTMLButtonElement>) => void;
+  onClick: (e: MouseEvent<HTMLLIElement>) => void;
 };
 
 export const SongTile = ({ title, artistName, albumCoverSrc, onClick, songSrc }: Props) => {
   return (
-    <li className={styles.song}>
-      <button data-song-src={songSrc} onClick={onClick}>
+    <li data-song-src={songSrc} onClick={onClick} className={styles.song}>
+      <button>
         <div className={styles.songContent}>
           <p className={styles.songTitle}>{title}</p>
           <p className={styles.songArtist}>{artistName}</p>
