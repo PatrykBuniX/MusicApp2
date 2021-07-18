@@ -15,7 +15,7 @@
   }
 }
 
-.song {
+.loadMoreWrapper {
   box-sizing: content-box;
   margin: 1rem auto;
   width: 90%;
@@ -31,49 +31,6 @@
     transform: scale(1.05);
   }
 }
-
-.songContent {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  pointer-events: none;
-  overflow: hidden;
-  padding: 0.5rem 1rem 1rem 0.5rem;
-}
-.songTitle {
-  display: block;
-  font-size: 1.8rem;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.songArtist {
-  font-size: 1.6rem;
-  font-style: italic;
-}
-
-@keyframes bgPulse {
-  from {
-    background-color: var(--blue);
-  }
-  to {
-    background-color: var(--darkBlue);
-  }
-}
-.songImageWrapper {
-  width: 10rem;
-  height: 10rem;
-  flex-shrink: 0;
-  position: relative;
-  animation: bgPulse 0.5s alternate infinite ease-in-out;
-}
-
-.songImage {
-  width: 100%;
-  height: 100%;
-}
-
 .loadMoreButton {
   display: block;
   width: 100%;
@@ -82,4 +39,5 @@
   cursor: pointer;
   border: none;
   outline: none;
+  font-size: 1.6rem;
 }

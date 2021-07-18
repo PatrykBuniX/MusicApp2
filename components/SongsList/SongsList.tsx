@@ -1,7 +1,6 @@
 import { Song, SongsStatus } from "../../types";
-import Image from "next/image";
 import styles from "../SongsList/SongsList.module.scss";
-import { LoadingView } from "../LoadingView/LoadingView";
+import { SongTile } from "../SongTile/SongTile";
 
 type Props = {
   error: string | null;
@@ -18,34 +17,23 @@ export const SongsList = ({ songsStatus, error, songs, loadMoreSongs }: Props) =
     return <p>{error}</p>;
   }
 
-  songsStatus;
-  //songStatus is loaded
-
+  //songStatus is loaded / loading
   return (
     <ul className={styles.songsList}>
       {songs
         ? songs.map((song: Song, index) => {
             return (
-              <li className={styles.song} key={index + "-" + song.id}>
-                <div className={styles.songContent}>
-                  <p className={styles.songTitle}>{song.title}</p>
-                  <p className={styles.songArtist}>{song.artist.name}</p>
-                </div>
-                <div className={styles.songImageWrapper}>
-                  <Image
-                    className={styles.songImage}
-                    src={song.album.cover}
-                    alt=""
-                    layout="fill"
-                    objectFit="fill"
-                  />
-                </div>
-              </li>
+              <SongTile
+                key={index + "-" + song.id}
+                title={song.title}
+                artistName={song.artist.name}
+                albumCoverSrc={song.album.cover}
+              />
             );
           })
         : null}
       {songsStatus === "loaded" ? (
-        <li className={styles.song}>
+        <li className={styles.loadMoreWrapper}>
           <button className={styles.loadMoreButton} onClick={loadMoreSongs}>
             load more
           </button>

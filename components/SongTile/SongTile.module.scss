@@ -1,0 +1,58 @@
+.song {
+  box-sizing: content-box;
+  margin: 1rem auto;
+  width: 90%;
+  max-width: 500px;
+  height: 10rem;
+  background: hsla(0, 0%, 100%, 0.25);
+  border-bottom: 4px solid black;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.14, 1.35, 0.54, 1.95), background-color 0.2s ease-in-out;
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.songContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+  overflow: hidden;
+  padding: 0.5rem 1rem 1rem 0.5rem;
+}
+.songTitle {
+  display: block;
+  font-size: 1.8rem;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.songArtist {
+  font-size: 1.6rem;
+  font-style: italic;
+}
+
+@keyframes bgPulse {
+  from {
+    background-color: var(--blue);
+  }
+  to {
+    background-color: var(--darkBlue);
+  }
+}
+.songImageWrapper {
+  width: 10rem;
+  height: 10rem;
+  flex-shrink: 0;
+  position: relative;
+  animation: bgPulse 0.5s alternate infinite ease-in-out;
+}
+
+.songImage {
+  width: 100%;
+  height: 100%;
+}
