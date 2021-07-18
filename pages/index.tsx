@@ -9,6 +9,7 @@ import { fetchSongs } from "../utils/apiCalls";
 
 const Home = () => {
   const [search, setSearch] = useState("");
+  const [lastQuery, setLastQuery] = useState("");
   const [queryIndex, setQueryIndex] = useState(0);
   const [songs, setSongs] = useState<Song[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -20,12 +21,14 @@ const Home = () => {
 
   const handleSearchSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!search || search === lastQuery) return;
     updateSongsStatus("FETCH_SONGS");
     try {
       const songs = await fetchSongs(search, queryIndex);
       setSongs(songs);
       setError(null);
       setQueryIndex((prev) => prev + 25);
+      setLastQuery(search);
       updateSongsStatus("FETCH_SONGS_SUCCESS");
     } catch (error) {
       setError(error.message);
