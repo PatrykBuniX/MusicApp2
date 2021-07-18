@@ -1,19 +1,21 @@
+import { FormEvent, useState, useRef, useEffect } from "react";
+import { Song } from "../types";
+import { fetchSongs } from "../utils/apiCalls";
 import styles from "../styles/Home.module.scss";
 import { Header } from "../components/Header/Header";
 import { SongsList } from "../components/SongsList/SongsList";
 import { LoadingView } from "../components/LoadingView/LoadingView";
-import { FormEvent, useState, useRef, useEffect } from "react";
-import { Song } from "../types";
 import { useSongsStatus } from "../hooks/useSongsStatus";
-import { fetchSongs } from "../utils/apiCalls";
 
 const Home = () => {
   const [search, setSearch] = useState("");
-  const [lastSearch, setLastSearch] = useState("");
+  const [prevSearch, setPrevSearch] = useState("");
   const [queryIndex, setQueryIndex] = useState(0);
+
   const [songs, setSongs] = useState<Song[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [songsStatus, updateSongsStatus] = useSongsStatus();
+
   const [currentSongIndex, setCurrentSongIndex] = useState(-1);
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -43,14 +45,14 @@ const Home = () => {
 
   const handleSearchSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!search || search === lastSearch) return;
+    if (!search || search === prevSearch) return;
     updateSongsStatus("FETCH_SONGS");
     try {
       const songs = await fetchSongs(search, queryIndex);
       setSongs(songs);
       setError(null);
       setQueryIndex((prev) => prev + 25);
-      setLastSearch(search);
+      setPrevSearch(search);
       updateSongsStatus("FETCH_SONGS_SUCCESS");
     } catch (error) {
       setError(error.message);
