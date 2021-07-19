@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, MouseEvent } from "react";
-import { ProgressBar } from "../Header/ProgressBar/ProgressBar";
+import { ProgressBar } from "../ProgressBar/ProgressBar";
 import styles from "./Player.module.scss";
 
 type Props = {
