@@ -41,7 +41,7 @@ const Home = () => {
     if (!search || search === prevSearch) return;
     updateSongsStatus("FETCH_SONGS");
     try {
-      const songs = await fetchSongs(search, queryIndex);
+      const songs = await fetchSongs(search, 0);
       setSongs(songs);
       setError(null);
       setQueryIndex((prev) => prev + 25);
@@ -49,6 +49,7 @@ const Home = () => {
       updateSongsStatus("FETCH_SONGS_SUCCESS");
     } catch (error) {
       setError(error.message);
+      setPrevSearch("");
       updateSongsStatus("FETCH_SONGS_ERROR");
     }
   };
@@ -63,6 +64,7 @@ const Home = () => {
       updateSongsStatus("FETCH_SONGS_SUCCESS");
     } catch (error) {
       setError(error.message);
+      setPrevSearch("");
       updateSongsStatus("FETCH_SONGS_ERROR");
     }
   };
