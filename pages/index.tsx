@@ -24,7 +24,14 @@ const Home = () => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const playNext = () => {
-    setCurrentSongIndex((prev) => prev + 1);
+    if (!songs) return;
+    setCurrentSongIndex((prev) => {
+      const nextIndex = prev + 1;
+      if (nextIndex > songs.length - 1) {
+        return 0;
+      }
+      return nextIndex;
+    });
   };
 
   const handleTileClick = (clickedIndex: number) => {
