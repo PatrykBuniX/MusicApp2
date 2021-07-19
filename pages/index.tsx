@@ -95,13 +95,11 @@ const Home = () => {
           />
           {songsStatus === "loading" ? <LoadingView /> : null}
         </div>
-        {songs ? (
-          <Player
-            currentSong={songs[currentSongIndex] ? songs[currentSongIndex].preview : ""}
-            isPlaying={isPlaying}
-            onEnded={playNext}
-          />
-        ) : null}
+        <Player
+          currentSong={songs && songs[currentSongIndex] ? songs[currentSongIndex].preview : ""}
+          isPlaying={isPlaying}
+          onEnded={playNext}
+        />
       </div>
     </div>
   );
