@@ -1,36 +1,29 @@
-import { FormEvent, useState, useRef, useEffect } from "react";
+import { FormEvent, useState } from "react";
 import { Song } from "../types";
 import { fetchSongs } from "../utils/apiCalls";
 import styles from "../styles/Home.module.scss";
 import { Header } from "../components/Header/Header";
+import { Player } from "../components/Player/Player";
 import { SongsList } from "../components/SongsList/SongsList";
 import { LoadingView } from "../components/LoadingView/LoadingView";
 import { useSongsStatus } from "../hooks/useSongsStatus";
 
 const Home = () => {
+  // header's search
   const [search, setSearch] = useState("");
   const [prevSearch, setPrevSearch] = useState("");
-  const [queryIndex, setQueryIndex] = useState(0);
 
+  // songs fetching
+  const [queryIndex, setQueryIndex] = useState(0);
   const [songs, setSongs] = useState<Song[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [songsStatus, updateSongsStatus] = useSongsStatus();
 
+  // Player state
   const [currentSongIndex, setCurrentSongIndex] = useState(-1);
   const [isPlaying, setIsPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
-
-  useEffect(() => {
-    if (!audioRef.current) return;
-    if (isPlaying) {
-      audioRef.current.play();
-    } else {
-      audioRef.current.pause();
-    }
-  });
 
   const playNext = () => {
-    console.log("set index");
     setCurrentSongIndex((prev) => prev + 1);
   };
 
@@ -95,12 +88,11 @@ const Home = () => {
         </div>
       </div>
       {songs ? (
-        <audio
-          ref={audioRef}
-          crossOrigin="anonymous"
-          src={songs[currentSongIndex] ? songs[currentSongIndex].preview : ""}
+        <Player
+          currentSong={songs[currentSongIndex] ? songs[currentSongIndex].preview : ""}
+          isPlaying={isPlaying}
           onEnded={playNext}
-        ></audio>
+        />
       ) : null}
     </div>
   );
