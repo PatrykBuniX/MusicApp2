@@ -1,11 +1,12 @@
 .header {
   width: 100%;
-  min-height: 10%;
+  height: 10%;
   background-color: var(--blue);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 5%;
+  flex-shrink: 0;
 }
 
 .logoLink {

@@ -2,10 +2,12 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 .listWrapper {
   height: 65%;
+  flex-shrink: 0;
   width: 100vw;
   flex: 1 1 auto;
   position: relative;

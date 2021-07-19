@@ -1,4 +1,6 @@
 import { useEffect, useRef } from "react";
+import { ProgressBar } from "../Header/ProgressBar/ProgressBar";
+import styles from "./Player.module.scss";
 
 type Props = {
   currentSong: string;
@@ -18,5 +20,12 @@ export const Player = ({ currentSong, isPlaying, onEnded }: Props) => {
     }
   });
 
-  return <audio ref={audioRef} crossOrigin="anonymous" src={currentSong} onEnded={onEnded}></audio>;
+  useEffect(() => {});
+
+  return (
+    <div className={styles.playerWrapper}>
+      <audio ref={audioRef} crossOrigin="anonymous" src={currentSong} onEnded={onEnded}></audio>;
+      {audioRef.current ? <ProgressBar audioElement={audioRef.current} /> : null}
+    </div>
+  );
 };
