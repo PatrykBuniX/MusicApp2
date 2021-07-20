@@ -6,6 +6,7 @@ import NextIcon from "../../public/next-icon.svg";
 import PlayIcon from "../../public/play-icon.svg";
 import PauseIcon from "../../public/pause-icon.svg";
 import { Song } from "../../types";
+import { VolumeBar } from "../VolumeBar/VolumeBar";
 
 type Props = {
   currentSong: Song | null;
@@ -18,6 +19,7 @@ type Props = {
 export const Player = ({ currentSong, isPlaying, setIsPlaying, playPrev, playNext }: Props) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [currentTime, setCurrentTime] = useState(0);
+  const [volume, setVolume] = useState(0.5);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -49,6 +51,15 @@ export const Player = ({ currentSong, isPlaying, setIsPlaying, playPrev, playNex
   const handlePlayPauseClick = () => {
     setIsPlaying((prev) => !prev);
   };
+
+  const handleVolumeChange = (volume: number) => {
+    setVolume(volume);
+  };
+
+  useEffect(() => {
+    if (!audioRef.current) return;
+    audioRef.current.volume = volume;
+  }, [volume]);
 
   return (
     <div className={styles.playerWrapper}>
@@ -97,6 +108,11 @@ export const Player = ({ currentSong, isPlaying, setIsPlaying, playPrev, playNex
           <span className="visuallyhidden">Next song</span>
         </button>
       </div>
+      <VolumeBar
+        disabled={!currentSong || !currentSong.preview}
+        volume={volume}
+        handleVolumeChange={handleVolumeChange}
+      />
     </div>
   );
 };
