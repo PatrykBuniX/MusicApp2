@@ -45,7 +45,7 @@ export const Player = ({ currentSong, isPlaying, setIsPlaying, playPrev, playNex
 
   return (
     <div className={styles.playerWrapper}>
-      <audio ref={audioRef} crossOrigin="anonymous" src={currentSong} onEnded={playNext}></audio>;
+      <audio ref={audioRef} crossOrigin="anonymous" src={currentSong} onEnded={playNext}></audio>
       <ProgressBar
         handleClick={handleProgressBarClick}
         currentTime={currentTime || 0}
