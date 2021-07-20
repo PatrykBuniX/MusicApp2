@@ -32,7 +32,9 @@
   justify-content: space-between;
   cursor: pointer;
   transition: transform 0.2s cubic-bezier(0.14, 1.35, 0.54, 1.95), background-color 0.2s ease-in-out;
-  &:hover {
+
+  &:hover,
+  &:focus-within {
     transform: scale(1.05);
   }
 }
@@ -43,6 +45,5 @@
   background: none;
   cursor: pointer;
   border: none;
-  outline: none;
   font-size: 1.6rem;
 }
