@@ -22,7 +22,7 @@
 .currentTime {
   position: absolute;
   left: 1rem;
-  bottom: calc(100% + 1rem);
+  top: calc(100% + 1rem);
   font-size: 1.4rem;
   color: white;
 }
@@ -31,6 +31,6 @@
   font-size: 1.4rem;
   position: absolute;
   right: 1rem;
-  bottom: calc(100% + 1rem);
+  top: calc(100% + 1rem);
   color: white;
 }
