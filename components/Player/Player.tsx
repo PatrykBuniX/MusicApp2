@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState, MouseEvent, Dispatch, SetStateAction } from "react";
 import { ProgressBar } from "../ProgressBar/ProgressBar";
 import styles from "./Player.module.scss";
+import PrevIcon from "../../public/prev-icon.svg";
+import NextIcon from "../../public/next-icon.svg";
+import PlayIcon from "../../public/play-icon.svg";
+import PauseIcon from "../../public/pause-icon.svg";
 
 type Props = {
   currentSong: string;
@@ -52,9 +56,35 @@ export const Player = ({ currentSong, isPlaying, setIsPlaying, playPrev, playNex
         duration={audioRef.current?.duration || 0}
       />
       <div className={styles.buttonsWrapper}>
-        <button onClick={playPrev}>prev</button>
-        <button onClick={handlePlayPauseClick}>{isPlaying ? "pause" : "play"}</button>
-        <button onClick={playNext}>next</button>
+        <button onClick={playPrev}>
+          <span aria-hidden="true">
+            <PrevIcon />
+          </span>
+          <span className="visuallyhidden">Prev song</span>
+        </button>
+        <button onClick={handlePlayPauseClick}>
+          {isPlaying ? (
+            <>
+              <span aria-hidden="true">
+                <PauseIcon />
+              </span>
+              <span className="visuallyhidden">Pause song</span>
+            </>
+          ) : (
+            <>
+              <span aria-hidden="true">
+                <PlayIcon />
+              </span>
+              <span className="visuallyhidden">Play song</span>
+            </>
+          )}
+        </button>
+        <button onClick={playNext}>
+          <span aria-hidden="true">
+            <NextIcon />
+          </span>
+          <span className="visuallyhidden">Next song</span>
+        </button>
       </div>
     </div>
   );

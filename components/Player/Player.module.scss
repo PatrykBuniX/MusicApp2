@@ -10,3 +10,27 @@
   position: relative;
   padding: 5% 0;
 }
+
+.buttonsWrapper {
+  display: flex;
+  justify-content: center;
+
+  button {
+    margin: 0 1rem;
+    border: none;
+    background: none;
+    padding: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    svg {
+      width: 4rem;
+      height: 4rem;
+      fill: black;
+    }
+
+    &:hover,
+    &:focus {
+      transform: scale(1.05);
+    }
+  }
+}
