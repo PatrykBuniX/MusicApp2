@@ -5,9 +5,10 @@ import PrevIcon from "../../public/prev-icon.svg";
 import NextIcon from "../../public/next-icon.svg";
 import PlayIcon from "../../public/play-icon.svg";
 import PauseIcon from "../../public/pause-icon.svg";
+import { Song } from "../../types";
 
 type Props = {
-  currentSong: string;
+  currentSong: Song | null;
   isPlaying: boolean;
   setIsPlaying: Dispatch<SetStateAction<boolean>>;
   playPrev: () => void;
@@ -45,24 +46,34 @@ export const Player = ({ currentSong, isPlaying, setIsPlaying, playPrev, playNex
     audioRef.current.currentTime = newValue * audioRef.current.duration;
   };
 
-  const handlePlayPauseClick = () => [setIsPlaying((prev) => !prev)];
+  const handlePlayPauseClick = () => {
+    setIsPlaying((prev) => !prev);
+  };
 
   return (
     <div className={styles.playerWrapper}>
-      <audio ref={audioRef} crossOrigin="anonymous" src={currentSong} onEnded={playNext}></audio>
+      <audio
+        ref={audioRef}
+        crossOrigin="anonymous"
+        src={currentSong ? currentSong.preview : ""}
+        onEnded={playNext}
+      ></audio>
+      <div className={styles.songTitle}>
+        {currentSong ? `${currentSong.artist.name} - ${currentSong.title}` : "..."}
+      </div>
       <ProgressBar
         handleClick={handleProgressBarClick}
         currentTime={currentTime || 0}
         duration={audioRef.current?.duration || 0}
       />
       <div className={styles.buttonsWrapper}>
-        <button onClick={playPrev}>
+        <button disabled={!currentSong || !currentSong.preview} onClick={playPrev}>
           <span aria-hidden="true">
             <PrevIcon />
           </span>
           <span className="visuallyhidden">Prev song</span>
         </button>
-        <button onClick={handlePlayPauseClick}>
+        <button disabled={!currentSong || !currentSong.preview} onClick={handlePlayPauseClick}>
           {isPlaying ? (
             <>
               <span aria-hidden="true">
@@ -79,7 +90,7 @@ export const Player = ({ currentSong, isPlaying, setIsPlaying, playPrev, playNex
             </>
           )}
         </button>
-        <button onClick={playNext}>
+        <button disabled={!currentSong || !currentSong.preview} onClick={playNext}>
           <span aria-hidden="true">
             <NextIcon />
           </span>
