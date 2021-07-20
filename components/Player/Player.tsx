@@ -20,6 +20,7 @@ export const Player = ({ currentSong, isPlaying, setIsPlaying, playPrev, playNex
   const audioRef = useRef<HTMLAudioElement>(null);
   const [currentTime, setCurrentTime] = useState(0);
   const [volume, setVolume] = useState(0.5);
+  const disabled = !currentSong || !currentSong.preview;
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -41,6 +42,7 @@ export const Player = ({ currentSong, isPlaying, setIsPlaying, playPrev, playNex
   });
 
   const handleProgressBarClick = (e: MouseEvent<HTMLDivElement>) => {
+    if (disabled) return;
     if (!audioRef.current) return;
     const { left, width } = e.currentTarget.getBoundingClientRect();
     const clickedX = e.pageX;
@@ -73,18 +75,19 @@ export const Player = ({ currentSong, isPlaying, setIsPlaying, playPrev, playNex
         {currentSong ? `${currentSong.artist.name} - ${currentSong.title}` : "..."}
       </div>
       <ProgressBar
+        disabled={disabled}
         handleClick={handleProgressBarClick}
         currentTime={currentTime || 0}
         duration={audioRef.current?.duration || 0}
       />
       <div className={styles.buttonsWrapper}>
-        <button disabled={!currentSong || !currentSong.preview} onClick={playPrev}>
+        <button disabled={disabled} onClick={playPrev}>
           <span aria-hidden="true">
             <PrevIcon />
           </span>
           <span className="visuallyhidden">Prev song</span>
         </button>
-        <button disabled={!currentSong || !currentSong.preview} onClick={handlePlayPauseClick}>
+        <button disabled={disabled} onClick={handlePlayPauseClick}>
           {isPlaying ? (
             <>
               <span aria-hidden="true">
@@ -101,18 +104,14 @@ export const Player = ({ currentSong, isPlaying, setIsPlaying, playPrev, playNex
             </>
           )}
         </button>
-        <button disabled={!currentSong || !currentSong.preview} onClick={playNext}>
+        <button disabled={disabled} onClick={playNext}>
           <span aria-hidden="true">
             <NextIcon />
           </span>
           <span className="visuallyhidden">Next song</span>
         </button>
       </div>
-      <VolumeBar
-        disabled={!currentSong || !currentSong.preview}
-        volume={volume}
-        handleVolumeChange={handleVolumeChange}
-      />
+      <VolumeBar disabled={disabled} volume={volume} handleVolumeChange={handleVolumeChange} />
     </div>
   );
 };

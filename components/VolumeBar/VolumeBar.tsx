@@ -30,7 +30,7 @@ export const VolumeBar = ({ volume, handleVolumeChange, disabled }: Props) => {
         </span>
         <span className="visuallyhidden">Mute sound.</span>
       </button>
-      <div style={{opacity: disabled ? 0.5 : 1, cursor: 'default'}} onClick={handleClick} className={styles.volumeBar}>
+      <div style={{opacity: disabled ? 0.5 : 1, cursor: disabled ? "default" : "pointer"}} onClick={handleClick} className={styles.volumeBar}>
         <div style={{ width: `${volume * 100}%` }} className={styles.volume}></div>
       </div>
       <button
