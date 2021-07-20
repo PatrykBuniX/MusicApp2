@@ -1,14 +1,16 @@
-import { useEffect, useRef, useState, MouseEvent } from "react";
+import { useEffect, useRef, useState, MouseEvent, Dispatch, SetStateAction } from "react";
 import { ProgressBar } from "../ProgressBar/ProgressBar";
 import styles from "./Player.module.scss";
 
 type Props = {
   currentSong: string;
   isPlaying: boolean;
-  onEnded: () => void;
+  setIsPlaying: Dispatch<SetStateAction<boolean>>;
+  playPrev: () => void;
+  playNext: () => void;
 };
 
-export const Player = ({ currentSong, isPlaying, onEnded }: Props) => {
+export const Player = ({ currentSong, isPlaying, setIsPlaying, playPrev, playNext }: Props) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [currentTime, setCurrentTime] = useState(0);
 
@@ -39,14 +41,21 @@ export const Player = ({ currentSong, isPlaying, onEnded }: Props) => {
     audioRef.current.currentTime = newValue * audioRef.current.duration;
   };
 
+  const handlePlayPauseClick = () => [setIsPlaying((prev) => !prev)];
+
   return (
     <div className={styles.playerWrapper}>
-      <audio ref={audioRef} crossOrigin="anonymous" src={currentSong} onEnded={onEnded}></audio>;
+      <audio ref={audioRef} crossOrigin="anonymous" src={currentSong} onEnded={playNext}></audio>;
       <ProgressBar
         handleClick={handleProgressBarClick}
         currentTime={currentTime || 0}
         duration={audioRef.current?.duration || 0}
       />
+      <div className={styles.buttonsWrapper}>
+        <button onClick={playPrev}>prev</button>
+        <button onClick={handlePlayPauseClick}>{isPlaying ? "pause" : "play"}</button>
+        <button onClick={playNext}>next</button>
+      </div>
     </div>
   );
 };

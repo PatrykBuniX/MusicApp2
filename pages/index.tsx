@@ -23,6 +23,17 @@ const Home = () => {
   const [currentSongIndex, setCurrentSongIndex] = useState(-1);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  const playPrev = () => {
+    if (!songs) return;
+    setCurrentSongIndex((prev) => {
+      const prevIndex = prev - 1;
+      if (prevIndex < 0) {
+        return songs.length - 1;
+      }
+      return prevIndex;
+    });
+  };
+
   const playNext = () => {
     if (!songs) return;
     setCurrentSongIndex((prev) => {
@@ -98,7 +109,9 @@ const Home = () => {
         <Player
           currentSong={songs && songs[currentSongIndex] ? songs[currentSongIndex].preview : ""}
           isPlaying={isPlaying}
-          onEnded={playNext}
+          setIsPlaying={setIsPlaying}
+          playNext={playNext}
+          playPrev={playPrev}
         />
       </div>
     </div>
