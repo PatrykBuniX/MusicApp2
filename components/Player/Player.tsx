@@ -7,6 +7,7 @@ import PlayIcon from "../../public/play-icon.svg";
 import PauseIcon from "../../public/pause-icon.svg";
 import { Song } from "../../types";
 import { VolumeBar } from "../VolumeBar/VolumeBar";
+import { AudioChart } from "../VolumeBar/AudioChart/AudioChart";
 
 type Props = {
   currentSong: Song | null;
@@ -112,6 +113,7 @@ export const Player = ({ currentSong, isPlaying, setIsPlaying, playPrev, playNex
         </button>
       </div>
       <VolumeBar disabled={disabled} volume={volume} handleVolumeChange={handleVolumeChange} />
+      {audioRef.current ? <AudioChart audioElement={audioRef.current} /> : null}
     </div>
   );
 };
