@@ -1,7 +1,7 @@
 .progressBar {
   height: 1rem;
   border-radius: 50px;
-  background: hsla(244, 0%, 100%, 0.9);
+  background: var(--white);
   width: 80%;
   max-width: 700px;
   display: flex;

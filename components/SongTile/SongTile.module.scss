@@ -4,7 +4,7 @@
   width: 90%;
   max-width: 500px;
   height: 10rem;
-  background: hsla(0, 0%, 100%, 0.25);
+  background: var(--transparentWhite);
   border-bottom: 4px solid black;
   transition: transform 0.2s cubic-bezier(0.14, 1.35, 0.54, 1.95), background-color 0.2s ease-in-out;
   &:hover,
@@ -24,7 +24,7 @@
   }
 
   &.active {
-    background: hsla(0, 100%, 100%, 0.5);
+    background: var(--transparentWhiteActive);
     transform: scale(1.05);
   }
 }

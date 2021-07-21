@@ -11,12 +11,19 @@
 .songsList {
   height: 100%;
   width: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   list-style-type: none;
   position: relative;
+  scrollbar-color: white var(--darkBlue);
+
   &::-webkit-scrollbar {
-    display: none;
+    width: auto;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--transparentWhite);
+    border-radius: 50px;
   }
 }
 
@@ -26,7 +33,7 @@
   width: 90%;
   max-width: 500px;
   height: 10rem;
-  background: hsla(0, 0%, 100%, 0.25);
+  background: var(--transparentWhite);
   border-bottom: 4px solid black;
   display: flex;
   justify-content: space-between;
