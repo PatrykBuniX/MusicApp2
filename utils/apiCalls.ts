@@ -16,13 +16,13 @@ const fetchSongs = async (query: string, index: number = 0) => {
     throw new Error(errorObj.message);
   }
   const data = await res.json();
-  const { data: songs, error } = data;
+  const { data: songs, error, next } = data;
 
   //api response with 200 and Exception
   if (error) {
     throw new Error(error.message);
   }
-  return songs;
+  return { songs, next };
 };
 
 export { fetchSongs };

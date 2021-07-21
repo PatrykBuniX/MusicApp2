@@ -15,6 +15,7 @@ const Home = () => {
 
   // songs fetching
   const [queryIndex, setQueryIndex] = useState(0);
+  const [hasNext, setHasNext] = useState(true);
   const [songs, setSongs] = useState<Song[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [songsStatus, updateSongsStatus] = useSongsStatus();
@@ -59,7 +60,8 @@ const Home = () => {
     if (!search || search === prevSearch) return;
     updateSongsStatus("FETCH_SONGS");
     try {
-      const songs = await fetchSongs(search, 0);
+      const { songs, next } = await fetchSongs(search, 0);
+      setHasNext(!!next);
       setQueryIndex(0);
       setSongs(songs);
       setError(null);
@@ -74,9 +76,11 @@ const Home = () => {
   };
 
   const loadMoreSongs = async () => {
+    if (!hasNext) return;
     updateSongsStatus("FETCH_SONGS");
     try {
-      const songs = await fetchSongs(search, queryIndex);
+      const { songs, next } = await fetchSongs(search, queryIndex);
+      setHasNext(!!next);
       setSongs((prevSongs) => [...prevSongs!, ...songs]);
       setError(null);
       setQueryIndex((prev) => prev + 25);
@@ -101,6 +105,7 @@ const Home = () => {
             handleTileClick={handleTileClick}
             songsStatus={songsStatus}
             songs={songs}
+            hasNext={hasNext}
             error={error}
             loadMoreSongs={loadMoreSongs}
             currentSongIndex={currentSongIndex}

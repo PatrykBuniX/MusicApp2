@@ -5,6 +5,7 @@ import { SongTile } from "../SongTile/SongTile";
 type Props = {
   error: string | null;
   songs: Song[] | null;
+  hasNext: boolean;
   songsStatus: SongsStatus;
   loadMoreSongs: () => Promise<void>;
   handleTileClick: (clickedIndex: number) => void;
@@ -15,6 +16,7 @@ export const SongsList = ({
   songsStatus,
   error,
   songs,
+  hasNext,
   loadMoreSongs,
   handleTileClick,
   currentSongIndex,
@@ -47,7 +49,7 @@ export const SongsList = ({
           Try again later
         </p>
       ) : null}
-      {songsStatus === "loaded" ? (
+      {songsStatus === "loaded" && hasNext ? (
         <li className={styles.loadMoreWrapper}>
           <button className={styles.loadMoreButton} onClick={loadMoreSongs}>
             load more
