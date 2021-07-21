@@ -60,6 +60,7 @@ const Home = () => {
     updateSongsStatus("FETCH_SONGS");
     try {
       const songs = await fetchSongs(search, 0);
+      setQueryIndex(0);
       setSongs(songs);
       setError(null);
       setQueryIndex((prev) => prev + 25);

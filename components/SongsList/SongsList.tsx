@@ -22,17 +22,7 @@ export const SongsList = ({
   if (songsStatus === "idle") {
     return <p className={styles.idleStateText}>Search for your favourite songs!</p>;
   }
-  if (songsStatus === "error") {
-    return (
-      <p className={styles.errorStateText}>
-        {error}
-        <br />
-        Try again later
-      </p>
-    );
-  }
 
-  //songStatus is loaded / loading
   return (
     <ul className={styles.songsList}>
       {songs
@@ -50,6 +40,13 @@ export const SongsList = ({
             );
           })
         : null}
+      {error ? (
+        <p className={styles.errorStateText}>
+          {error}
+          <br />
+          Try again later
+        </p>
+      ) : null}
       {songsStatus === "loaded" ? (
         <li className={styles.loadMoreWrapper}>
           <button className={styles.loadMoreButton} onClick={loadMoreSongs}>
