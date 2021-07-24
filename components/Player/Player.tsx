@@ -8,6 +8,7 @@ import PauseIcon from "../../public/pause-icon.svg";
 import { Song } from "../../types";
 import { VolumeBar } from "../VolumeBar/VolumeBar";
 import { AudioChart } from "../VolumeBar/AudioChart/AudioChart";
+import { isIOS } from "../../utils/isIOS";
 
 type Props = {
   currentSong: Song | null;
@@ -112,8 +113,13 @@ export const Player = ({ currentSong, isPlaying, setIsPlaying, playPrev, playNex
           <span className="visuallyhidden">Next song</span>
         </button>
       </div>
-      <VolumeBar disabled={disabled} volume={volume} handleVolumeChange={handleVolumeChange} />
-      {audioRef.current ? <AudioChart audioElement={audioRef.current} /> : null}
+      {/* iOS does not support volume level control and media stream capturing */}
+      {!isIOS() ? (
+        <>
+          <VolumeBar disabled={disabled} volume={volume} handleVolumeChange={handleVolumeChange} />
+          {audioRef.current ? <AudioChart audioElement={audioRef.current} /> : null}
+        </>
+      ) : null}
     </div>
   );
 };
