@@ -6,10 +6,9 @@
 }
 
 .listWrapper {
-  height: 65%;
-  flex-shrink: 0;
-  width: 100vw;
-  flex: 1 1 auto;
+  height: 100%;
+  flex: 1;
+  overflow: hidden;
   position: relative;
   background: linear-gradient(to bottom, var(--blue) 0%, var(--darkBlue) 100%);
 }

@@ -13,6 +13,18 @@
   --white: hsla(244, 0%, 100%, 0.9);
   --transparentWhite: hsla(0, 0%, 100%, 0.25);
   --transparentWhiteActive: hsla(0, 100%, 100%, 0.5);
+
+  --text-header: 2rem;
+  --text-big: 1.6rem;
+  --text-medium: 1.4rem;
+  --text-small: 1.2rem;
+
+  @media screen and (min-width: 768px) {
+    --text-header: 2.2rem;
+    --text-big: 1.8rem;
+    --text-medium: 1.6rem;
+    --text-small: 1.4rem;
+  }
 }
 
 html {

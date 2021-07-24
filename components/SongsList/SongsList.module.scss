@@ -1,16 +1,16 @@
 .idleStateText {
   text-align: center;
-  font-size: 1.6rem;
+  font-size: var(--text-medium);
 }
 
 .errorStateText {
   text-align: center;
-  font-size: 1.6rem;
+  font-size: var(--text-medium);
 }
 
 .songsList {
-  height: 100%;
   width: 100%;
+  height: 100%;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   list-style-type: none;
@@ -32,7 +32,10 @@
   margin: 1rem auto;
   width: 90%;
   max-width: 500px;
-  height: 10rem;
+  height: 8rem;
+  @media screen and (min-width: 768px) {
+    height: 10rem;
+  }
   background: var(--transparentWhite);
   border-bottom: 4px solid black;
   display: flex;
@@ -52,5 +55,5 @@
   background: none;
   cursor: pointer;
   border: none;
-  font-size: 1.6rem;
+  font-size: var(--text-medium);
 }
