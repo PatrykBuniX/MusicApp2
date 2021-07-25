@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useCallback, useState } from "react";
 import styles from "../styles/Home.module.scss";
 import { Song } from "../types";
 import { fetchSongs } from "../utils/apiCalls";
@@ -24,7 +24,7 @@ const Home = () => {
   const [currentSongIndex, setCurrentSongIndex] = useState(-1);
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const playPrev = () => {
+  const playPrev = useCallback(() => {
     if (!songs) return;
     setCurrentSongIndex((prev) => {
       const prevIndex = prev - 1;
@@ -33,9 +33,9 @@ const Home = () => {
       }
       return prevIndex;
     });
-  };
+  }, [songs]);
 
-  const playNext = () => {
+  const playNext = useCallback(() => {
     if (!songs) return;
     setCurrentSongIndex((prev) => {
       const nextIndex = prev + 1;
@@ -44,37 +44,40 @@ const Home = () => {
       }
       return nextIndex;
     });
-  };
+  }, [songs]);
 
-  const handleTileClick = (clickedIndex: number) => {
+  const handleTileClick = useCallback((clickedIndex: number) => {
     setCurrentSongIndex(clickedIndex);
     setIsPlaying(true);
-  };
+  }, []);
 
   const handleSearchInput = (e: FormEvent<HTMLInputElement>) => {
     setSearch(e.currentTarget.value);
   };
 
-  const handleSearchSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!search || search === prevSearch) return;
-    updateSongsStatus("FETCH_SONGS");
-    try {
-      const { songs, next } = await fetchSongs(search, 0);
-      setHasNext(!!next);
-      setSongs(songs);
-      setError(null);
-      setQueryIndex(25);
-      setPrevSearch(search);
-      updateSongsStatus("FETCH_SONGS_SUCCESS");
-    } catch (error) {
-      setError(error.message);
-      setPrevSearch("");
-      updateSongsStatus("FETCH_SONGS_ERROR");
-    }
-  };
+  const handleSearchSubmit = useCallback(
+    async (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      if (!search || search === prevSearch) return;
+      updateSongsStatus("FETCH_SONGS");
+      try {
+        const { songs, next } = await fetchSongs(search, 0);
+        setHasNext(!!next);
+        setSongs(songs);
+        setError(null);
+        setQueryIndex(25);
+        setPrevSearch(search);
+        updateSongsStatus("FETCH_SONGS_SUCCESS");
+      } catch (error) {
+        setError(error.message);
+        setPrevSearch("");
+        updateSongsStatus("FETCH_SONGS_ERROR");
+      }
+    },
+    [prevSearch, search, updateSongsStatus]
+  );
 
-  const loadMoreSongs = async () => {
+  const loadMoreSongs = useCallback(async () => {
     if (!hasNext) return;
     updateSongsStatus("FETCH_SONGS");
     try {
@@ -89,7 +92,7 @@ const Home = () => {
       setPrevSearch("");
       updateSongsStatus("FETCH_SONGS_ERROR");
     }
-  };
+  }, [hasNext, queryIndex, search, updateSongsStatus]);
 
   return (
     <div className={styles.appWrapper}>
