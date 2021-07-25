@@ -8,6 +8,8 @@ import { SongsList } from "../components/SongsList/SongsList";
 import { LoadingView } from "../components/LoadingView/LoadingView";
 import { useSongsStatus } from "../hooks/useSongsStatus";
 
+const FETCH_INDEX = 25 as const;
+
 const Home = () => {
   // header's search
   const [search, setSearch] = useState("");
@@ -65,7 +67,7 @@ const Home = () => {
         setHasNext(!!next);
         setSongs(songs);
         setError(null);
-        setQueryIndex(25);
+        setQueryIndex(FETCH_INDEX);
         setPrevSearch(search);
         updateSongsStatus("FETCH_SONGS_SUCCESS");
       } catch (error) {
@@ -85,7 +87,7 @@ const Home = () => {
       setHasNext(!!next);
       setSongs((prevSongs) => [...prevSongs!, ...songs]);
       setError(null);
-      setQueryIndex((prev) => prev + 25);
+      setQueryIndex((prev) => prev + FETCH_INDEX);
       updateSongsStatus("FETCH_SONGS_SUCCESS");
     } catch (error) {
       setError(error.message);
