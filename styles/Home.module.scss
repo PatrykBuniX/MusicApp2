@@ -1,5 +1,5 @@
 .appWrapper {
-  height: var(--app-height);
+  height: var(--app-height, 100vh);
   display: flex;
   flex-direction: column;
   overflow: hidden;
