@@ -27,35 +27,33 @@ export const SongsList = ({
         <p className={styles.idleStateText}>Search for your favourite songs!</p>
       ) : (
         <ul className={styles.songsList}>
-          {songs
-            ? songs.map((song: Song, index) => {
-                return (
-                  <SongTile
-                    key={index + "-" + song.id}
-                    title={song.title}
-                    artistName={song.artist.name}
-                    albumCoverSrc={song.album.cover}
-                    songSrc={song.preview}
-                    onClick={() => handleTileClick(index)}
-                    active={index === currentSongIndex}
-                  />
-                );
-              })
-            : null}
-          {error ? (
+          {songs &&
+            songs.map((song: Song, index) => {
+              return (
+                <SongTile
+                  key={index + "-" + song.id}
+                  title={song.title}
+                  artistName={song.artist.name}
+                  albumCoverSrc={song.album.cover}
+                  songSrc={song.preview}
+                  onClick={() => handleTileClick(index)}
+                  active={index === currentSongIndex}
+                />
+              );
+            })}
+          {error && (
             <p className={styles.errorStateText}>
-              {error}
-              <br />
-              Try again later
+              <span>{error}</span>
+              <span>Try again later</span>
             </p>
-          ) : null}
-          {(songsStatus === "loaded" || songsStatus === "error") && hasNext ? (
+          )}
+          {(songsStatus === "loaded" || songsStatus === "error") && hasNext && (
             <li className={styles.loadMoreWrapper}>
               <button className={styles.loadMoreButton} onClick={loadMoreSongs}>
                 load more
               </button>
             </li>
-          ) : null}
+          )}
         </ul>
       )}
     </div>

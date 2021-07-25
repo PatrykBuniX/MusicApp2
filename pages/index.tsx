@@ -120,7 +120,7 @@ const Home = () => {
         loadMoreSongs={loadMoreSongs}
         currentSongIndex={currentSongIndex}
       />
-      {songsStatus === "loading" ? <LoadingView /> : null}
+      {songsStatus === "loading" && <LoadingView />}
       <Player
         currentSong={songs && songs[currentSongIndex]}
         isPlaying={isPlaying}

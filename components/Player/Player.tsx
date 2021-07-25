@@ -115,16 +115,16 @@ export const Player = memo(
           </button>
         </div>
         {/* iOS does not support volume level control and media stream capturing */}
-        {!isIOS() ? (
+        {!isIOS() && (
           <>
             <VolumeBar
               disabled={disabled}
               volume={volume}
               handleVolumeChange={handleVolumeChange}
             />
-            {audioRef.current ? <AudioChart audioElement={audioRef.current} /> : null}
+            {audioRef.current && <AudioChart audioElement={audioRef.current} />}
           </>
-        ) : null}
+        )}
       </div>
     );
   }
