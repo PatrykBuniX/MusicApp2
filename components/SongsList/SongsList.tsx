@@ -1,5 +1,5 @@
-import { Song, SongsStatus } from "../../types";
 import styles from "../SongsList/SongsList.module.scss";
+import { Song, SongsStatus } from "../../types";
 import { SongTile } from "../SongTile/SongTile";
 
 type Props = {

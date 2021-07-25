@@ -1,8 +1,8 @@
+import { FormEvent } from "react";
 import styles from "./Header.module.scss";
 import Link from "next/link";
 import MusicIcon from "../../public/music-icon.svg";
 import SearchIcon from "../../public/search-icon.svg";
-import { FormEvent } from "react";
 
 type Props = {
   search: string;

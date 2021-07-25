@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState, MouseEvent, Dispatch, SetStateAction } from "react";
-import { ProgressBar } from "../ProgressBar/ProgressBar";
 import styles from "./Player.module.scss";
+import { isIOS } from "../../utils/isIOS";
+import { Song } from "../../types";
 import PrevIcon from "../../public/prev-icon.svg";
 import NextIcon from "../../public/next-icon.svg";
 import PlayIcon from "../../public/play-icon.svg";
 import PauseIcon from "../../public/pause-icon.svg";
-import { Song } from "../../types";
+import { ProgressBar } from "../ProgressBar/ProgressBar";
 import { VolumeBar } from "../VolumeBar/VolumeBar";
-import { AudioChart } from "../VolumeBar/AudioChart/AudioChart";
-import { isIOS } from "../../utils/isIOS";
+import { AudioChart } from "../AudioChart/AudioChart";
 
 type Props = {
   currentSong: Song | null;

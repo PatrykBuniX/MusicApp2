@@ -1,6 +1,6 @@
 import { MouseEvent } from "react";
-import { createTimeStamp } from "../../utils/createTimeStamp";
 import styles from "./ProgressBar.module.scss";
+import { createTimeStamp } from "../../utils/createTimeStamp";
 
 type Props = {
   currentTime: number;

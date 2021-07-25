@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
+import styles from "../styles/Home.module.scss";
 import { Song } from "../types";
 import { fetchSongs } from "../utils/apiCalls";
-import styles from "../styles/Home.module.scss";
 import { Header } from "../components/Header/Header";
 import { Player } from "../components/Player/Player";
 import { SongsList } from "../components/SongsList/SongsList";
