@@ -34,7 +34,7 @@ export const Header = ({ search, handleSearchInput, handleSearchSubmit }: Props)
           />
         </div>
         <button className={styles.submitButton} type="submit">
-          <span className="visuallyhidden">Szukaj</span>
+          <span className="visuallyhidden">Search</span>
           <span aria-hidden="true">
             <SearchIcon />
           </span>
