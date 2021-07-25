@@ -62,10 +62,9 @@ const Home = () => {
     try {
       const { songs, next } = await fetchSongs(search, 0);
       setHasNext(!!next);
-      setQueryIndex(0);
       setSongs(songs);
       setError(null);
-      setQueryIndex((prev) => prev + 25);
+      setQueryIndex(25);
       setPrevSearch(search);
       updateSongsStatus("FETCH_SONGS_SUCCESS");
     } catch (error) {
