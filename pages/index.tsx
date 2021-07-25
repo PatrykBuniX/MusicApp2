@@ -15,7 +15,7 @@ const Home = () => {
 
   // songs fetching
   const [queryIndex, setQueryIndex] = useState(0);
-  const [hasNext, setHasNext] = useState(true);
+  const [hasNext, setHasNext] = useState(false);
   const [songs, setSongs] = useState<Song[] | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [songsStatus, updateSongsStatus] = useSongsStatus();
