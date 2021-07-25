@@ -100,18 +100,17 @@ const Home = () => {
           handleSearchInput={handleSearchInput}
           handleSearchSubmit={handleSearchSubmit}
         />
-        <div className={styles.listWrapper}>
-          <SongsList
-            handleTileClick={handleTileClick}
-            songsStatus={songsStatus}
-            songs={songs}
-            hasNext={hasNext}
-            error={error}
-            loadMoreSongs={loadMoreSongs}
-            currentSongIndex={currentSongIndex}
-          />
-          {songsStatus === "loading" ? <LoadingView /> : null}
-        </div>
+        <SongsList
+          handleTileClick={handleTileClick}
+          songsStatus={songsStatus}
+          songs={songs}
+          hasNext={hasNext}
+          error={error}
+          loadMoreSongs={loadMoreSongs}
+          currentSongIndex={currentSongIndex}
+        />
+        {/* {songsStatus === "loading" ? <LoadingView /> : null} */}
+        <LoadingView />
         <Player
           currentSong={songs && songs[currentSongIndex]}
           isPlaying={isPlaying}

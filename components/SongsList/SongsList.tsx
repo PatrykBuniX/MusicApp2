@@ -21,41 +21,43 @@ export const SongsList = ({
   handleTileClick,
   currentSongIndex,
 }: Props) => {
-  if (songsStatus === "idle") {
-    return <p className={styles.idleStateText}>Search for your favourite songs!</p>;
-  }
-
   return (
-    <ul className={styles.songsList}>
-      {songs
-        ? songs.map((song: Song, index) => {
-            return (
-              <SongTile
-                key={index + "-" + song.id}
-                title={song.title}
-                artistName={song.artist.name}
-                albumCoverSrc={song.album.cover}
-                songSrc={song.preview}
-                onClick={() => handleTileClick(index)}
-                active={index === currentSongIndex}
-              />
-            );
-          })
-        : null}
-      {error ? (
-        <p className={styles.errorStateText}>
-          {error}
-          <br />
-          Try again later
-        </p>
-      ) : null}
-      {songsStatus === "loaded" && hasNext ? (
-        <li className={styles.loadMoreWrapper}>
-          <button className={styles.loadMoreButton} onClick={loadMoreSongs}>
-            load more
-          </button>
-        </li>
-      ) : null}
-    </ul>
+    <div className={styles.listWrapper}>
+      {songsStatus === "idle" ? (
+        <p className={styles.idleStateText}>Search for your favourite songs!</p>
+      ) : (
+        <ul className={styles.songsList}>
+          {songs
+            ? songs.map((song: Song, index) => {
+                return (
+                  <SongTile
+                    key={index + "-" + song.id}
+                    title={song.title}
+                    artistName={song.artist.name}
+                    albumCoverSrc={song.album.cover}
+                    songSrc={song.preview}
+                    onClick={() => handleTileClick(index)}
+                    active={index === currentSongIndex}
+                  />
+                );
+              })
+            : null}
+          {error ? (
+            <p className={styles.errorStateText}>
+              {error}
+              <br />
+              Try again later
+            </p>
+          ) : null}
+          {songsStatus === "loaded" && hasNext ? (
+            <li className={styles.loadMoreWrapper}>
+              <button className={styles.loadMoreButton} onClick={loadMoreSongs}>
+                load more
+              </button>
+            </li>
+          ) : null}
+        </ul>
+      )}
+    </div>
   );
 };

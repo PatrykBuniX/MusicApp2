@@ -1,3 +1,11 @@
+.listWrapper {
+  height: 100%;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(to bottom, var(--blue) 0%, var(--darkBlue) 100%);
+}
+
 .idleStateText {
   text-align: center;
   font-size: var(--text-medium);

@@ -4,11 +4,3 @@
   flex-direction: column;
   overflow: hidden;
 }
-
-.listWrapper {
-  height: 100%;
-  flex: 1;
-  overflow: hidden;
-  position: relative;
-  background: linear-gradient(to bottom, var(--blue) 0%, var(--darkBlue) 100%);
-}
