@@ -49,7 +49,7 @@ export const SongsList = ({
               Try again later
             </p>
           ) : null}
-          {songsStatus === "loaded" || (songsStatus === "error" && hasNext) ? (
+          {(songsStatus === "loaded" || songsStatus === "error") && hasNext ? (
             <li className={styles.loadMoreWrapper}>
               <button className={styles.loadMoreButton} onClick={loadMoreSongs}>
                 load more
