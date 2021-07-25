@@ -70,6 +70,8 @@ const Home = () => {
         setQueryIndex(FETCH_INDEX);
         setPrevSearch(search);
         updateSongsStatus("FETCH_SONGS_SUCCESS");
+        setIsPlaying(false);
+        setCurrentSongIndex(-1);
       } catch (error) {
         setError(error.message);
         setPrevSearch("");
