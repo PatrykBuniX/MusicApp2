@@ -93,31 +93,29 @@ const Home = () => {
   };
 
   return (
-    <div>
-      <div className={styles.appWrapper}>
-        <Header
-          search={search}
-          handleSearchInput={handleSearchInput}
-          handleSearchSubmit={handleSearchSubmit}
-        />
-        <SongsList
-          handleTileClick={handleTileClick}
-          songsStatus={songsStatus}
-          songs={songs}
-          hasNext={hasNext}
-          error={error}
-          loadMoreSongs={loadMoreSongs}
-          currentSongIndex={currentSongIndex}
-        />
-        {songsStatus === "loading" ? <LoadingView /> : null}
-        <Player
-          currentSong={songs && songs[currentSongIndex]}
-          isPlaying={isPlaying}
-          setIsPlaying={setIsPlaying}
-          playNext={playNext}
-          playPrev={playPrev}
-        />
-      </div>
+    <div className={styles.appWrapper}>
+      <Header
+        search={search}
+        handleSearchInput={handleSearchInput}
+        handleSearchSubmit={handleSearchSubmit}
+      />
+      <SongsList
+        handleTileClick={handleTileClick}
+        songsStatus={songsStatus}
+        songs={songs}
+        hasNext={hasNext}
+        error={error}
+        loadMoreSongs={loadMoreSongs}
+        currentSongIndex={currentSongIndex}
+      />
+      {songsStatus === "loading" ? <LoadingView /> : null}
+      <Player
+        currentSong={songs && songs[currentSongIndex]}
+        isPlaying={isPlaying}
+        setIsPlaying={setIsPlaying}
+        playNext={playNext}
+        playPrev={playPrev}
+      />
     </div>
   );
 };
