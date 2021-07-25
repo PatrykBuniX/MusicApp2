@@ -1,4 +1,4 @@
-import { FormEvent, useCallback, useState } from "react";
+import { FormEvent, useCallback, useEffect, useState } from "react";
 import styles from "../styles/Home.module.scss";
 import { Song } from "../types";
 import { fetchSongs } from "../utils/apiCalls";
@@ -93,6 +93,16 @@ const Home = () => {
       updateSongsStatus("FETCH_SONGS_ERROR");
     }
   }, [hasNext, queryIndex, search, updateSongsStatus]);
+
+  useEffect(() => {
+    const setAppHeight = () => {
+      document.documentElement.style.setProperty("--app-height", `${window.innerHeight}px`);
+    };
+    setAppHeight();
+    window.addEventListener("resize", setAppHeight);
+
+    return () => window.removeEventListener("resize", setAppHeight);
+  }, []);
 
   return (
     <div className={styles.appWrapper}>
